@@ -65,9 +65,9 @@ g ∘ f : X → Z
 				<section>
 					<h3>Leis da Monad</h3>
 					<ul>
-						<li>Left identity <p>M&lt;T&gt; bind (T → M&lt;U&gt;) ==  ((T) → (T → M&lt;U&gt;))</p></li>
-						<li>Right identity <p>M&lt;T&gt; bind (T → unit T) == (M&lt;T&gt;)</p></li>
-						<li>Associativa <p>M&lt;T&gt; bind F bind G == M&lt;T&gt; bind ((X) → F(X) bind G)</p></li>
+						<li><b>Left identity</b> <p>M&lt;T&gt; bind (T → M&lt;U&gt;) ==  ((T) → (T → M&lt;U&gt;))</p></li>
+						<li><b>Right identity</b> <p>M&lt;T&gt; bind unit == M&lt;T&gt;</p></li>
+						<li><b>Associativity</b> <p>M&lt;T&gt; bind F bind G == M&lt;T&gt; bind ((X) → F(X) bind G)</p></li>
 					</ul>
 				</section>
 
@@ -80,13 +80,13 @@ public static &lt;T&gt; Optional&lt;T&gt; of(T value);
 public&lt;U&gt; Optional&lt;U&gt; flatMap(Function&lt;? super T, Optional&lt;U&gt;&gt; mapper);
 					</code></pre>
 				</section>
-				<section>
+				<section data-transition="zoom">
 					<h1>Talk is cheap. Show me the code!</h1>
 				</section>
 				<section>
 					<h3>Motivações</h3>
 					<ul>
-						<li>Sem saltos no fluxo</li>
+						<li>Sem saltos no fluxo como usando try catch</li>
 						<li>Contexto compartilhado explícito</li>
 						<li>Contexto imutável (side effects, replayability)</li>
 					</ul>
@@ -111,6 +111,7 @@ public&lt;U&gt; Optional&lt;U&gt; flatMap(Function&lt;? super T, Optional&lt;U&g
 			// More info https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
 				history: true,
+				controls: false,
 
 				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [
