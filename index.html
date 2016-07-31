@@ -4,10 +4,10 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Optional Monads em java</title>
+		<title>Optional Monads com java 8</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/sky.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -24,9 +24,82 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
 				<section>
-					<p>References https://dzone.com/articles/whats-wrong-java-8-part-iv https://gist.github.com/ms-tg/7420496 https://en.wikipedia.org/wiki/Monad_(functional_programming)</p>
+					<h1>Optional Monads com java 8</h1>
+					<p>
+						<small>Lucas Santos</small>
+					</p>
+				</section>
+				<section>
+					<p>Adicionando comportamentos em OO</p>
+					<ul>
+						<li>Extensão</li>
+						<li>Composição</li>
+					</ul>
+				</section>
+				<section>
+					<p>Adicionando comportamentos em linguagens funcionais</p>
+					<pre><code data-trim>
+f : X → Y 
+g : Y → Z
+g(f(x))
+g ∘ f : X → Z
+					</code></pre>
+				</section>
+				<section>
+					<h3>Problema</h3>
+					<p>Manter contexto na composição das funções</p>
+				</section>
+				<section>
+					<h1>Monads</h1>
+					<p>Empacotando retornos de função</p>
+				</section>
+				<section>
+					<h3>Estrutura da Monad</h3>
+					<ul>
+						<li>Tipo: M&lt;T&gt;</li>
+						<li>Unit function: T → M&lt;T&gt;</li>
+						<li>Bind function: M&lt;T&gt; bind (T → M&lt;U&gt;) = M&lt;U&gt;</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Leis da Monad</h3>
+					<ul>
+						<li>Left identity <p>M&lt;T&gt; bind (T → M&lt;U&gt;) ==  ((T) → (T → M&lt;U&gt;))</p></li>
+						<li>Right identity <p>M&lt;T&gt; bind (T → unit T) == (M&lt;T&gt;)</p></li>
+						<li>Associativa <p>M&lt;T&gt; bind F bind G == M&lt;T&gt; bind ((X) → F(X) bind G)</p></li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Assinaturas de função em Optional</h3>
+					<pre><code class="java" data-trim>
+//type constructor
+public static &lt;T&gt; Optional&lt;T&gt; of(T value);
+//bind
+public&lt;U&gt; Optional&lt;U&gt; flatMap(Function&lt;? super T, Optional&lt;U&gt;&gt; mapper);
+					</code></pre>
+				</section>
+				<section>
+					<h1>Talk is cheap. Show me the code!</h1>
+				</section>
+				<section>
+					<h3>Motivações</h3>
+					<ul>
+						<li>Sem saltos no fluxo</li>
+						<li>Contexto compartilhado explícito</li>
+						<li>Contexto imutável (side effects, replayability)</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Referências</h3>
+					<ul>
+						<li> <a href="https://dzone.com/articles/whats-wrong-java-8-part-iv">What's Wrong in Java 8, Part IV: Monads</a> </li>
+						<li> <a href="https://gist.github.com/ms-tg/7420496">Does JDK8's Optional class satisfy the Monad laws? Yes, it does.</a> </li>
+						<li> <a href="https://en.wikipedia.org/wiki/Monad_(functional_programming)">Monad_(functional_programming)</a> </li>
+						<li> <a href="https://en.wikipedia.org/wiki/Function_composition">Function_composition</a> </li>
+						<li> <a href="http://www.devmedia.com.br/conheca-o-conceito-monada-no-java/32838">Conheça o conceito Mônada no Java</a> </li>
+					</ul>
 				</section>
 			</div>
 		</div>
