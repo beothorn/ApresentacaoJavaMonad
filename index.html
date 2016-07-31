@@ -59,15 +59,15 @@ g ∘ f : X → Z
 					<ul>
 						<li>Tipo: M&lt;T&gt;</li>
 						<li>Unit function: T → M&lt;T&gt;</li>
-						<li>Bind function: M&lt;T&gt; bind (T → M&lt;U&gt;) = M&lt;U&gt;</li>
+						<li>Bind function: M&lt;T&gt;.flatMap((T → M&lt;U&gt;)) = M&lt;U&gt;</li>
 					</ul>
 				</section>
 				<section>
 					<h3>Leis da Monad</h3>
 					<ul>
-						<li><b>Left identity</b> <p>M&lt;T&gt; bind (T → M&lt;U&gt;) ==  ((T) → (T → M&lt;U&gt;))</p></li>
-						<li><b>Right identity</b> <p>M&lt;T&gt; bind unit == M&lt;T&gt;</p></li>
-						<li><b>Associativity</b> <p>M&lt;T&gt; bind F bind G == M&lt;T&gt; bind ((X) → F(X) bind G)</p></li>
+						<li class="fragment "><b>Left identity</b> <p>M&lt;T&gt;.flatMap((T → M&lt;U&gt;)) == (T → M&lt;U&gt;).apply(T)</p></li>
+						<li class="fragment "><b>Right identity</b> <p>M&lt;T&gt;.flatMap(unit) == M&lt;T&gt;</p></li>
+						<li class="fragment "><b>Associativity</b> <p>M&lt;T&gt;.flatMap(F).flatMap(G)</p> == <p>M&lt;T&gt;.flatMap(((X) → F(X).flatMap(G))</p></li>
 					</ul>
 				</section>
 
